@@ -17,7 +17,7 @@ $(document).ready(function() {
     });
   });
 
-  $(".checkout").on('click', function(){
+  $("#check-ins").on('click', ".checkout", function(){
     id = $(this).attr('data-checkin');
     msg = "Leave a quick message, if you want...";
     alertify.set({labels: {ok: "Checkout", cancel: "Stay a while"}});
