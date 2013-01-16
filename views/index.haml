@@ -1,0 +1,36 @@
+!!!
+%html
+  %head
+    %title Hackerspace Checkin
+    %script{src: "//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"}
+    %script{src: "/js/bootstrap.min.js"}
+    %script{src: "/js/alertify.min.js"}
+    %script{src: "/js/photobooth.min.js"}
+    %script{src: "/js/app.js"}
+    %link{rel: "stylesheet", href: "css/bootstrap.css"}
+    %link{rel: "stylesheet", href: "css/alertify.core.css"}
+    %link{rel: "stylesheet", href: "css/alertify.bootstrap.css"}
+    %link{rel: "stylesheet", href: "css/app.css"}
+    %body
+      .container
+        %h1 Welcome to Hackerspace/Skillhouse
+        .well
+          #webcam
+          %p Please check in
+          %p Your name
+          %input#checkin-name{name: "username"}
+          %p and a quick message
+          %input#checkin-msg{name: "checkin_msg"}
+          %input.btn.btn-success#checkin-btn{value: "Check in", type: "button"}
+        .row-fluid
+          .span6
+            %h3 Recent Checkins
+            #check-ins
+              -checkins.each do |checkin|
+                =haml :checkin, locals: {checkin: checkin}
+          .span6
+            %h3 Recent Checkouts
+            #check-outs
+              -checkouts.each do |checkout|
+                =haml :checkout, locals: {checkout: checkout}
+

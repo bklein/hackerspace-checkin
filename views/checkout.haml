@@ -1,0 +1,11 @@
+.checkout
+  .well
+    %strong=checkout.name
+    checked out at
+    %strong=checkout.checkout_at.strftime("%m/%d/%Y at %I:%M%p")
+    and
+    -if checkout.checkout_msg == ""
+      %strong didn't say where they were going!
+    -else
+      said
+      %blockquote= checkout.checkout_msg
