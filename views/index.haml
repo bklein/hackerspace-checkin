@@ -14,15 +14,22 @@
     %body
       .container
         %h1 Welcome to Hackerspace/Skillhouse
-        .well
-          #webcam
-          #gallery
-          %p Please check in
-          %p Your name
-          %input#checkin-name{name: "username"}
-          %p and a quick message
-          %input#checkin-msg{name: "checkin_msg"}
-          %input.btn.btn-success#checkin-btn{value: "Check in", type: "button"}
+
+        .camera
+          .row-fluid.camera
+            .span6
+              #webcam
+            .span6
+              #gallery
+
+          .row-fluid
+            .span6
+              %p Please check in
+              %p Your name
+              %input#checkin-name{name: "username"}
+              %p and a quick message
+              %input#checkin-msg{name: "checkin_msg"}
+              %input.btn.btn-success#checkin-btn{value: "Check in", type: "button"}
         .row-fluid
           .span6
             %h3 Recent Checkins

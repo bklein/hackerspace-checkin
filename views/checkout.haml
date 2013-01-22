@@ -1,11 +1,15 @@
 .checkout
-  .well
-    %strong=checkout.name
-    checked out at
-    %strong=checkout.checkout_at.strftime("%m/%d/%Y at %I:%M%p")
-    and
-    -if checkout.checkout_msg == ""
-      %strong didn't say where they were going!
-    -else
-      said
-      %blockquote= checkout.checkout_msg
+  .media
+    %a{href: url_for_photo(checkout.photo_name), class: "pull-left"}
+      %img{src: url_for_photo(checkout.photo_name), class: "media-object"}
+    .media-body
+      .well
+        %strong=checkout.name
+        checked out at
+        %strong=checkout.checkout_at.strftime("%m/%d/%Y at %I:%M%p")
+        and
+        -if checkout.checkout_msg == ""
+          %strong didn't say where they were going!
+        -else
+          said
+          %blockquote= checkout.checkout_msg

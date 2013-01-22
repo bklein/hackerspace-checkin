@@ -9,6 +9,7 @@ class Checkin
   property :checkout_at, DateTime
   property :checkin_msg, Text, default: ""
   property :checkout_msg, Text, default: ""
+  property :photo_name, Text, default: ""
 
 end
 

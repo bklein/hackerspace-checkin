@@ -34,12 +34,18 @@ class HackerspaceLogin < Sinatra::Base
     checkin.checkin_at = Time.now
     checkin.save
 
-    md5 = Digest::MD5.hexdigest(dataURI)
-    filename = "#{md5}.png"
-    binary = Base64.decode64(dataURI.split(',')[1])
-    File.open(filename, 'wb') do |file|
-      file.write binary
+    filename = "#{checkin.id}.png"
+    unless dataURI.empty?
+      filepath = "public/photos/#{filename}"
+      binary = Base64.decode64(dataURI.split(',')[1])
+      File.open(filepath, 'wb') do |file|
+        file.write binary
+      end
+
+      checkin.photo_name = filename
+      checkin.save
     end
+
     return checkin # not require, but easy to read
   end
 
@@ -49,5 +55,13 @@ class HackerspaceLogin < Sinatra::Base
     checkin.checkout_msg = msg
     checkin.save
     checkin
+  end
+
+  def url_for_photo photo
+    if !photo.nil? && !photo.empty?
+      "/photos/#{photo}"
+    else
+      "/photos/default.png"
+    end
   end
 end

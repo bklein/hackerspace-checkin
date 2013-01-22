@@ -1,11 +1,15 @@
 .checkin{id: "checkin-#{checkin.id}"}
-  .well
-    %strong=checkin.name
-    checked in at
-    %strong=checkin.checkin_at.strftime("%m/%d/%Y at %I:%M%p")
-    and said
-    -if checkin.checkin_msg == ""
-      %strong nothing!
-    -else
-      %blockquote= checkin.checkin_msg
-    %input.btn.btn-danger.checkout{type: "button", data: {checkin: checkin.id}, value: "Checkout"}
+  .media
+    %a{href: url_for_photo(checkin.photo_name), class: "pull-left"}
+      %img{src: url_for_photo(checkin.photo_name), class: "media-object"}
+    .media-body
+      .well
+        %strong=checkin.name
+        checked in at
+        %strong=checkin.checkin_at.strftime("%m/%d/%Y at %I:%M%p")
+        and said
+        -if checkin.checkin_msg == ""
+          %strong nothing!
+        -else
+          %blockquote= checkin.checkin_msg
+        %input.btn.btn-danger.checkout{type: "button", data: {checkin: checkin.id}, value: "Checkout"}

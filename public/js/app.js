@@ -69,7 +69,7 @@ $(document).ready(function() {
 
   $("#webcam").photobooth().on("image", function(e, dataUrl){
     alertify.log('took a pic');
-    $("#gallery").append("<img src=\"" + dataUrl + "\" />");
+    $("#gallery").html("<img src=\"" + dataUrl + "\" />");
   });
 });
 
