@@ -2,6 +2,8 @@ require 'sinatra'
 require 'haml'
 require 'data_mapper'
 require './checkin'
+require 'digest/md5'
+require 'base64'
 
 class HackerspaceLogin < Sinatra::Base
 
@@ -14,7 +16,9 @@ class HackerspaceLogin < Sinatra::Base
   post '/checkin' do
     name  = params[:name] || ""
     msg = params[:checkin_msg] || ""
-    checkin = checkin_user name.strip, msg.strip
+    dataURI = params[:dataURI] || ""
+
+    checkin = checkin_user name.strip, msg.strip, dataURI
     haml :checkin, locals: {checkin: checkin}
   end
 
@@ -23,12 +27,19 @@ class HackerspaceLogin < Sinatra::Base
     haml :checkout, locals: {checkout: checkout}
   end
 
-  def checkin_user (name, msg)
+  def checkin_user (name, msg, dataURI)
     checkin = Checkin.new
     checkin.name = name
     checkin.checkin_msg = msg
     checkin.checkin_at = Time.now
     checkin.save
+
+    md5 = Digest::MD5.hexdigest(dataURI)
+    filename = "#{md5}.png"
+    binary = Base64.decode64(dataURI.split(',')[1])
+    File.open(filename, 'wb') do |file|
+      file.write binary
+    end
     return checkin # not require, but easy to read
   end
 
