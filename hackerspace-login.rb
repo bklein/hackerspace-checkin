@@ -28,4 +28,10 @@ class HackerspaceLogin < Sinatra::Base
     haml :checkout, locals: {checkout: checkout}
   end
 
+  get '/megaman/:id.gif' do
+    content_type 'image/gif'
+    File.read('public/default/default.png')
+  end
+
+
 end
