@@ -40,6 +40,7 @@ toggleWebcamState = function() {
     $("#take-photo-btn").removeClass("btn-info");
     $("#take-photo-btn").addClass("btn-warning");
     $("#take-photo-btn").attr("data-photo", "false");
+    $("#gallery").show();
   }
   else { //go back to pic state
     $("#gallery").hide();
@@ -62,6 +63,7 @@ toggleWebcamState = function() {
 $(document).ready(function() {
 
   $("#webcam").photobooth();
+  $(".trigger").hide();
 
   $("#checkin-btn").on('click', function(){
     name = $("#checkin-name").val() || "";
@@ -118,7 +120,6 @@ $(document).ready(function() {
 
   $("#webcam").on("image", function(e, dataUrl){
     $("#gallery").html("<img src=\"" + dataUrl + "\" />");
-    $("#gallery").show();
   });
 });
 
