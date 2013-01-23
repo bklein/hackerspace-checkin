@@ -24,6 +24,34 @@ function dataURItoBlob(dataURI){
   return bb.getBlob(mimeString);
 }
 
+reset = function() {
+  //go back to the default state
+  $("#gallery").hide();
+  $("#webcam").show();
+  $("#gallery").empty();
+}
+
+toggleWebcamState = function() {
+  if($("#take-photo-btn").attr("data-photo") === "true") {
+    $(".trigger").click();
+
+    $("#webcam").hide();
+    $("#take-photo-btn").text("Retake photo");
+    $("#take-photo-btn").removeClass("btn-info");
+    $("#take-photo-btn").addClass("btn-warning");
+    $("#take-photo-btn").attr("data-photo", "false");
+  }
+  else { //go back to pic state
+    $("#gallery").hide();
+    $("#gallery").empty();
+    $("#webcam").show();
+    $("#take-photo-btn").text("Say cheese!");
+    $("#take-photo-btn").removeClass("btn-warning");
+    $("#take-photo-btn").addClass("btn-info");
+    $("#take-photo-btn").attr("data-photo", "true");
+  }
+}
+
 $(document).ready(function() {
 
   $("#checkin-btn").on('click', function(){
@@ -42,6 +70,8 @@ $(document).ready(function() {
       $("#checkin-name").val("");
       $("#checkin-msg").val("");
       $("#check-ins").prepend(msg);
+
+      toggleWebcamState();
     });
   });
 
@@ -58,6 +88,7 @@ $(document).ready(function() {
             id: id,
             checkout_msg: response
           }
+
         }).done(function(msg){
           $("#checkin-" + id).remove();
           $("#check-outs").prepend(msg);
@@ -67,9 +98,15 @@ $(document).ready(function() {
     });
   });
 
+  $("#take-photo-btn").click( function(e) {
+    e.preventDefault();
+
+    toggleWebcamState();
+  });
+
   $("#webcam").photobooth().on("image", function(e, dataUrl){
-    alertify.log('took a pic');
     $("#gallery").html("<img src=\"" + dataUrl + "\" />");
+    $("#gallery").show();
   });
 });
 

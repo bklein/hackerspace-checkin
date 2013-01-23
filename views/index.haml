@@ -13,17 +13,17 @@
     %link{rel: "stylesheet", href: "css/app.css"}
     %body
       .main-container
-        %h1 Welcome to Hackerspace/Skillhouse
+        %h1 Welcome to Gainesville Hackerspace 
 
         .checkin
           .camera-container
             .camera
               #webcam
+              #gallery.hide
               .camera-actions
-                %a.btn.btn-info#take-photo-btn{ href: "#"}
+                %a.btn.btn-info#take-photo-btn{ href: "#", data: { photo: "true"}}
                   Say cheese!
-            #gallery.hide
-              b
+
 
           .checkin-info
             %input#checkin-name{type: "text", name: "username", placeholder: "Your name..."}
