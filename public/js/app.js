@@ -54,6 +54,8 @@ toggleWebcamState = function() {
 
 $(document).ready(function() {
 
+  $("#webcam").photobooth();
+
   $("#checkin-btn").on('click', function(){
     name = $("#checkin-name").val() || "";
     msg = $("#checkin-msg").val() || "";
@@ -104,7 +106,7 @@ $(document).ready(function() {
     toggleWebcamState();
   });
 
-  $("#webcam").photobooth().on("image", function(e, dataUrl){
+  $("#webcam").on("image", function(e, dataUrl){
     $("#gallery").html("<img src=\"" + dataUrl + "\" />");
     $("#gallery").show();
   });
