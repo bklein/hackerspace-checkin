@@ -44,6 +44,13 @@ toggleWebcamState = function() {
   else { //go back to pic state
     $("#gallery").hide();
     $("#gallery").empty();
+    $("#webcam").data("photobooth").setHueOffset(0);
+    $("#webcam").data("photobooth").setBrightnessOffset(0);
+    $("#webcam").data("photobooth").setSaturationOffset(0);
+    $(".slider .handle").css("left", "50px");
+    if ($(".crop.selected").length > 0)
+      $(".crop.selected").click();
+      $(".crop.selected").removeClass("selected");
     $("#webcam").show();
     $("#take-photo-btn").text("Take my picture");
     $("#take-photo-btn").removeClass("btn-warning");
