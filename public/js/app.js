@@ -45,7 +45,7 @@ toggleWebcamState = function() {
     $("#gallery").hide();
     $("#gallery").empty();
     $("#webcam").show();
-    $("#take-photo-btn").text("Say cheese!");
+    $("#take-photo-btn").text("Take my picture");
     $("#take-photo-btn").removeClass("btn-warning");
     $("#take-photo-btn").addClass("btn-info");
     $("#take-photo-btn").attr("data-photo", "true");
