@@ -80,7 +80,10 @@ $(document).ready(function() {
       $("#checkin-msg").val("");
       $("#check-ins").prepend(msg);
 
-      toggleWebcamState();
+      if (!$("#webcam").is(":visible")) {
+        //we only want to reset the webcam if they took a pic
+        toggleWebcamState();
+      }
     });
   });
 
