@@ -12,24 +12,26 @@
     %link{rel: "stylesheet", href: "css/bootstrap.css"}
     %link{rel: "stylesheet", href: "css/app.css"}
     %body
-      .container
-        %h1 Welcome to Hackerspace/Skillhouse
+      .main-container
+        %h1 Welcome to Gainesville Hackerspace 
 
-        .camera
-          .row-fluid.camera
-            .span6
+        .checkin
+          .camera-container
+            .camera
               #webcam
-            .span6
-              #gallery
+              #gallery.hide
+              .camera-actions
+                %a.btn.btn-info#take-photo-btn{ href: "#", data: { photo: "true"}}
+                  Say cheese!
 
-          .row-fluid
-            .span6
-              %p Please check in
-              %p Your name
-              %input#checkin-name{name: "username"}
-              %p and a quick message
-              %input#checkin-msg{name: "checkin_msg"}
-              %input.btn.btn-success#checkin-btn{value: "Check in", type: "button"}
+
+          .checkin-info
+            %input#checkin-name{type: "text", name: "username", placeholder: "Your name..."}
+            %br
+            %input#checkin-msg{type: "text", name: "checkin_msg", placeholder: "A quick message..."}
+            %br
+            %a.btn.btn-success#checkin-btn{href: "#"}
+              Check in
         .row-fluid
           .span6
             %h3 Recent Checkins
