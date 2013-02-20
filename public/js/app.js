@@ -121,5 +121,8 @@ $(document).ready(function() {
   $("#webcam").on("image", function(e, dataUrl){
     $("#gallery").html("<img src=\"" + dataUrl + "\" />");
   });
+
+  // attach fancybox to all the imgs
+  $(".fancybox").fancybox();
 });
 

@@ -1,6 +1,6 @@
 .checkin{id: "checkin-#{checkin.id}"}
   .media
-    %a{href: url_for_photo(checkin.photo_name), class: "pull-left"}
+    %a.fancybox{href: url_for_photo(checkin.photo_name), class: "pull-left"}
       %img{src: url_for_photo(checkin.photo_name), class: "media-object"}
     .media-body
       .well
